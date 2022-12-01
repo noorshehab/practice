@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+#include<vector>
+#include<iterator>
+#include<algorithm>
+class book {
+private:
+	string title;
+	string author;
+	string release;
+public:
+	book() {}
+	book(string t, string a, string d) :title(t), author(a), release(d) {}
+	string get_title() { return title; }
+	string get_author() { return author; }
+	string get_release() { return release; }
+	bool operator<( book& other)
+	{
+		if (author < other.get_author())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	void print()
+	{
+		cout << "title: " << title << endl<<"author:" << author <<endl<< "release date : " << release << endl;
+	}
+	~book(){}
+
+
+};
+
+void menu()
+{
+	cout << "Select from the following choices : \n1. Add new book\n2. Print listing sorted by author \n3. Quit"<<endl;
+}
+
+int main()
+{
+	vector<book> library;
+	int entry;
+	menu();
+	cin >> entry;
+	while (entry != 3)
+	{
+		
+		
+		if (entry == 3)
+		{
+			break;
+		}
+		else if (entry == 1)
+		{
+			string x, y, z;
+			cin >> x; cin >> y; cin >> z;
+			book temp(x,y,z);
+			library.push_back(temp);
+			
+
+		}
+		else if (entry == 2)
+		{
+			sort(library.begin(), library.end());
+			for (auto v : library)
+			{
+				v.print();
+			}
+			
+		}
+		cout << "----------------------\n";
+		menu();
+		cin >> entry;
+		
+	}
+ 
