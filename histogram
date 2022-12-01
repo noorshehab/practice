@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+#include<map>
+#include<stack>
+#include<iterator>
+#include<algorithm>
+int main()
+{
+    map<int, int>hist;
+    istream_iterator<double>in{ cin };
+    int val = *in;
+    in++;
+    hist.insert(make_pair(val, 1));
+    while (val != -1)
+    istream_iterator<string> in{ cin };
+    string arb = *in;
+    stack<char> rev;
+    for (int i = 0; i < arb.size(); i++)
+    {
+        val = *in;
+        if (val == -1)
+            break;
+        else
+        {
+            if (hist.find(val) != hist.end())
+            {
+                hist[val]++;
+            }
+            else
+            {
+                hist.insert(make_pair(val, 1));
+            }
+            in++;
+        }
+        rev.push(arb[i]);
+    }
+    for (const auto &p:hist )
+    for (int i = 0; i < arb.size(); i++)
+    {
+        cout << p.first << " " << p.second << endl;
+        arb[i] = rev.top();
+        rev.pop();
+    }
+    for (const auto& x : arb)
+    {
+        cout << x;
+    }
+
+
+}
+
