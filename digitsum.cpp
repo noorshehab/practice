@@ -12,6 +12,17 @@ int wrapped(int n)
 		return wrapped(n/10)+ n%10;
 	}
 }
+int digitalroot(int sum)
+{
+	if (sum < 10)
+	{
+		return sum;
+	}
+	else
+	{
+		digitalroot(wrapped(sum));
+	}
+}
 
 
 int main()
